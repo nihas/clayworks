@@ -143,25 +143,55 @@ Water
 
 <div class="col-md-6 no-padding-left">
 <h4 class="title">One-time costs</h4>
-<div class="col-md-8 cLabel no-padding">
+<!-- <div class="col-md-8 cLabel no-padding">
 Furniture
 </div>
 <div class="col-md-4">
 <input type="number" class="form-control" value="0" name="furniture" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; calculateTotal2()}">
-</div>
+</div> -->
 <div class="col-md-8 cLabel no-padding">
 Overall Fit out's
 </div>
 <div class="col-md-4">
-<input type="number" class="form-control" value="0" name="fit-out" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; calculateTotal2()}">
+<input type="number" class="form-control" value="0" name="fit-out" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; costOverall()}">
 </div>
 <div class="col-md-8 cLabel no-padding">
     Lease Tenure (in months)
     </div>
     <div class="col-md-4">
-    <input type="number" class="form-control" value="0" name="lease" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; calculateTotal2()}">
+    <input type="number" class="form-control" value="0" name="lease" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; permonth()}">
     </div>
-</div>
+
+    <div class="col-md-8 cLabel no-padding">
+        Cost Of Capital(12% p.a)
+        </div>
+        <div class="col-md-4">
+        <input type="number" disabled="disabled" id"coc_fit" class="form-control" value="0" name="coc_lease" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; calculateTotal2()}">
+        </div>
+
+        <div class="col-md-8 cLabel no-padding">
+            Per Month
+            </div>
+            <div class="col-md-4">
+            <input type="number" disabled="disabled" class="form-control" value="0" name="lease_per_month" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; calculateTotal2()}">
+            </div>
+
+        <div class="col-md-8 cLabel no-padding">
+            Security Deposit
+            </div>
+            <div class="col-md-4">
+            <input type="number" class="form-control" value="0" name="deposit" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; depositValue()}">
+            </div>
+  
+            <div class="col-md-8 cLabel no-padding">
+                Cost Of Capital(12% p.a)
+                </div>
+                <div class="col-md-4">
+                <input type="number" disabled="disabled" class="form-control" value="0" name="coc_deposit" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; calculateTotal2()}">
+                </div>
+
+        </div>
+        
 
 <div class="col-md-6 no-padding-left">
 <h4 class="title" style="display:block"></h4>
@@ -171,20 +201,70 @@ Overall Fit out's
     No of Employees
     </div>
     <div class="col-md-5 no-padding">
-    <input type="number" class="form-control" value="0" name="num_emp" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; calculateTotal2()}">
+    <input type="number" class="form-control" value="0" name="num_emp" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; copyNumEmp()}">
     </div>
     <div class="col-md-7 cLabel no-padding">
         Office Area (in sqft)
         </div>
         <div class="col-md-5 no-padding">
-        <input type="number" class="form-control" value="0" name="num_emp" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; calculateTotal2()}">
+        <input type="number" class="form-control" value="0" name="office_area" onfocus="if (this.value == &#39;0&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;0&#39;; calculateTotal2()}">
         </div>
+
   </div>
+
+
+
+  <hr/>
+    
+
+  <div class="et_pb_code_inner">
+  <div class="tabs col-md-12 no-padding"></div>
+  <div class="col-md-4 first">
+      <p class="sub-definition">Monthly Expense</p>
+      <p id="monthly" class="price">₹ 0</p>
+      </div>
+  <div class="col-md-4 first">
+      <p class="sub-definition">Overall One Time Cost</p>
+      <p id="overall" class="price">₹ 200.00</p>
+      </div>
+  
+      <div class="col-md-4 first">
+          <p class="sub-definition">Number of Employees</p>
+          <p id="numemp" class="price">0</p>
+          
+          </div>
+  
+      </div>
+      
+
+      <div class="et_pb_code_inner">
+          <div class="tabs col-md-12 no-padding"></div>
+          <div class="col-md-4 first">
+              <p class="sub-definition">Total Monthly Expense</p>
+              <p id="total_monthly" class="price">₹ 0</p>
+              </div>
+          <div class="col-md-4 first">
+              <p class="sub-definition">Yearly Expense</p>
+              <p id="yearly" class="price">₹ 200.00</p>
+              </div>
+          
+              <div class="col-md-4 third">
+                  <p class="sub-definition">Cost per Seat</p>
+                  <p id="perseat" class="price">0</p>
+                  
+                  </div>
+          
+              </div>
+
 </div>
   </div> <!-- .et_pb_code_inner -->
 </div> <!-- .et_pb_code -->
 
-<div class="et_pb_code et_pb_module  et_pb_code_4">
+
+
+
+
+<!-- <div class="et_pb_code et_pb_module  et_pb_code_4">
   <div class="et_pb_code_inner">
     <div class="tabs col-md-12 no-padding">
 <div class="col-md-4 first">
@@ -199,15 +279,65 @@ Overall Fit out's
 <p class="sub-definition">Save up to</p>
 <p id="diff2" class="price">₹ 0</p>
 </div>
-</div>
-   </div> <!--.et_pb_code_inner -->
-</div> <!-- .et_pb_code -->
+</div> -->
+   <!-- </div> .et_pb_code_inner -->
+<!-- </div> .et_pb_code -->
 
 <div class="et_pb_code et_pb_module  et_pb_code_5">
   
   
   <div class="et_pb_code_inner">
+
+       
     <script>
+
+      function copyNumEmp(){
+        var numEmp = parseInt(jQuery('input[name=num_emp]').val());
+        jQuery('#numemp').html(numEmp+'');
+        depositValue();
+      }
+
+      function costOverall(){
+        var costOverall = parseFloat(jQuery('input[name=fit-out]').val());
+        jQuery('input[name=coc_lease]').val((costOverall * (1/100))+'');
+      }
+
+      function permonth(){
+        var lease = parseInt(jQuery('input[name=lease]').val());
+        var costOverall2 = parseFloat(jQuery('input[name=fit-out]').val());
+        var cocLease = parseFloat(jQuery('input[name=coc_lease]').val());
+        jQuery('input[name=lease_per_month]').val((costOverall2/lease)+cocLease);
+      }
+
+      function depositValue(){
+        var deposit = parseInt(jQuery('input[name=deposit]').val());
+        jQuery('input[name=coc_deposit]').val((deposit * (1/100))+'');
+        var cocdeposit = parseInt(jQuery('input[name=coc_deposit]').val());
+        var lease_per_month= parseInt(jQuery('input[name=lease_per_month]').val());
+        jQuery("#overall").html('₹ '+(lease_per_month +cocdeposit).toFixed(2));
+
+        //calculating monthly expense
+        var rent = parseFloat(jQuery('input[name=rent]').val());
+        var building = parseFloat(jQuery('input[name=building]').val());
+        var electricity = parseFloat(jQuery('input[name=electricity]').val());
+        var power = parseFloat(jQuery('input[name=power]').val());
+        var printers = parseFloat(jQuery('input[name=printers]').val());
+        var brakages = parseFloat(jQuery('input[name=brakages]').val());
+        var internet = parseFloat(jQuery('input[name=internet]').val());
+        var admin = parseFloat(jQuery('input[name=admin]').val());
+        var water = parseFloat(jQuery('input[name=water]').val());
+        var parking = parseFloat(jQuery('input[name=parking]').val());
+        var housekeep = parseFloat(jQuery('input[name=housekeep]').val());
+        var pantry = parseFloat(jQuery('input[name=pantry]').val());
+// var furniture = parseFloat(jQuery('input[name=furniture]').val());
+// var fit = parseFloat(jQuery('input[name=fit-out]').val());
+
+        var sum = rent + building + electricity + power + printers + brakages + internet + admin + water + parking + housekeep + pantry;// + furniture + fit;
+        jQuery("#total_monthly").html('₹ '+(sum +(lease_per_month +cocdeposit)).toFixed(2));
+        jQuery("#yearly").html('₹ '+((sum +(lease_per_month +cocdeposit)).toFixed(2))*12);
+        var numEmp = parseInt(jQuery('input[name=num_emp]').val());
+        jQuery("#perseat").html('₹ '+((sum +(lease_per_month +cocdeposit)).toFixed(2)/numEmp));
+      }
 
 function calculateTotal2(){
 var rent = parseFloat(jQuery('input[name=rent]').val());
@@ -222,17 +352,17 @@ var water = parseFloat(jQuery('input[name=water]').val());
 var parking = parseFloat(jQuery('input[name=parking]').val());
 var housekeep = parseFloat(jQuery('input[name=housekeep]').val());
 var pantry = parseFloat(jQuery('input[name=pantry]').val());
-var furniture = parseFloat(jQuery('input[name=furniture]').val());
-var fit = parseFloat(jQuery('input[name=fit-out]').val());
+// var furniture = parseFloat(jQuery('input[name=furniture]').val());
+// var fit = parseFloat(jQuery('input[name=fit-out]').val());
 
-var sum = rent + building + electricity + power + printers + brakages + internet + admin + water + parking + housekeep + pantry + furniture + fit;
+var sum = rent + building + electricity + power + printers + brakages + internet + admin + water + parking + housekeep + pantry;// + furniture + fit;
 
-if(sum>200) {
-var diff = sum - 200;
-jQuery('#diff2').html('₹ '+diff.toFixed(2));
-}
+// if(sum>200) {
+// var diff = sum - 200;
+jQuery('#monthly').html('₹ '+sum.toFixed(2));
+// }
 
-jQuery('#price2').html("₹ "+sum.toFixed(2));
+// jQuery('#price2').html("₹ "+sum.toFixed(2));
 
 }
 
@@ -404,35 +534,68 @@ calculateTotal2();
 }
 });
 
-jQuery('input[name=furniture]').on('keyup change' ,function(){
+//numemp
+jQuery('input[name=num_emp]').on('keyup change' ,function(){
 /*calculateTotal22();*/
 
-var furniture = parseFloat(jQuery('input[name=furniture]').val());
-if(furniture <= 0){
-jQuery('input[name=furniture]').val(0);
-calculateTotal2();
+var numemp = parseInt(jQuery('input[name=num_emp]').val());
+if(numemp <= 0){
+jQuery('input[name=num_emp]').val(0);
+copyNumEmp();
 }
 
 else{
-calculateTotal2();
+  copyNumEmp();
 }
 });
 
+//fitouts
 jQuery('input[name=fit-out]').on('keyup change' ,function(){
 /*calculateTotal22();*/
 
-var fit = parseFloat(jQuery('input[name=fit-out]').val());
-if(fit <= 0){
-jQuery('input[name=fit-out]').val(0);
-calculateTotal2();
+var fit_out = parseFloat(jQuery('input[name=fit-out]').val());
+if(fit_out <= 0){
+  // coc_lease
+jQuery('input[name=coc_lease]').val(0);
+// jQuery('#coc_fit').html(fit_out * (1/100));
+// cost();
 }
-
 else{
-calculateTotal2();
+  costOverall();
 }
 });
 
+//lease
+jQuery('input[name=lease]').on('keyup change' ,function(){
+/*calculateTotal22();*/
 
+var lease = parseFloat(jQuery('input[name=lease]').val());
+if(lease <= 0){
+  // coc_lease
+jQuery('input[name=lease]').val(0);
+// jQuery('#coc_fit').html(fit_out * (1/100));
+// cost();
+}
+else{
+  permonth();
+}
+});
+
+//deposit
+jQuery('input[name=deposit]').on('keyup change' ,function(){
+/*calculateTotal22();*/
+
+var deposit = parseFloat(jQuery('input[name=deposit]').val());
+if(deposit <= 0){
+  // coc_lease
+jQuery('input[name=deposit]').val(0);
+// jQuery('#coc_fit').html(fit_out * (1/100));
+// cost();
+}
+else{
+  depositValue();
+}
+});
 
 
 </script>
