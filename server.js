@@ -1,6 +1,7 @@
 var express    = require("express");
 var login = require('./routes/loginroutes');
 var admin = require('./routes/adminroutes');
+var calc = require('./routes/cost_calculator');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
@@ -30,7 +31,8 @@ router.post('/admin', function(req, res) {
 });
 
 router.get('/admin', function(req, res) {
-
+    app.set('views', './admin');
+    app.use(express.static('public'));
     if(req.session.email){
         res.redirect('admin/dashboard');
         admin.dashboard(req,res);
@@ -44,6 +46,11 @@ router.get('/admin/dashboard', admin.dashboard);
 //route to handle user registration
 router.post('/register',login.register);
 router.post('/login',login.login)
+router.get('/seat-calculator', function(req, res) {
+        app.set('views', './cost calculator');
+        app.use(express.static('./cost calculator'));
+        res.render('index.html', { title: 'Hello - Please Login To Your Account' });
+});
 app.use('/', router);
 //for putting public css
 app.use(express.static('public'));
