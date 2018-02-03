@@ -100,9 +100,8 @@ a,abbr,acronym,address,applet,b,big,blockquote,body,center,cite,code,dd,del,dfn,
 }
 
 .footer-distributed .footer-right p{
-	display: inline-block;
 	vertical-align: top;
-	margin: 15px 42px 0 0;
+	margin: 15px 42px 15px 0;
 	color: #ffffff;
 }
 
