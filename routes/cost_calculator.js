@@ -1,5 +1,6 @@
 var mysql      = require('mysql');
 var bcrypt = require('bcrypt');
+var nodemailer = require('nodemailer');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -13,6 +14,22 @@ if(!err) {
     console.log("Error connecting database ... nn");
 }
 });
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'nihasnizar@gmail.com',
+      pass: 'Monu@8669'
+    }
+  });
+
+  var mailOptions = {
+    from: 'nihasnizar@gmail.com',
+    to: 'nihas@intellicar.in',
+    subject: 'Sending Email using Node.js',
+    html: '<h1>Welcome</h1><p>That was easy!</p>'
+  };
+
 // home
 exports.home = function(req,res){
     // console.log(req.session.email);
@@ -23,9 +40,16 @@ exports.home = function(req,res){
     // }
 }
 
-exports.dashboard = function(req,res){
+exports.sendMail = function(req,res){
     // res.redirect('dashboard');
-    res.render('dashboard.html', { title: 'Hello - Please Login To Your Account' });
+    // res.render('dashboard.html', { title: 'Hello - Please Login To Your Account' });
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 }
 
 exports.register = function(req,res){

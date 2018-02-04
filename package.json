@@ -1,0 +1,31 @@
+{
+  "name": "clayworks",
+  "version": "1.0.0",
+  "description": "clayworks",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mysql": "^2.15.0",
+    "nodemailer": "^4.4.2",
+    "nodeman": "^1.1.2",
+    "nodemon": "^1.14.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nihas/clayworks.git"
+  },
+  "author": "Nihas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nihas/clayworks/issues"
+  },
+  "homepage": "https://github.com/nihas/clayworks#readme"
+}

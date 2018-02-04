@@ -46,11 +46,13 @@ router.get('/admin/dashboard', admin.dashboard);
 //route to handle user registration
 router.post('/register',login.register);
 router.post('/login',login.login)
+//seat-calc
 router.get('/seat-calculator', function(req, res) {
         app.set('views', './cost calculator');
         app.use(express.static('./cost calculator'));
         res.render('index.html', { title: 'Hello - Please Login To Your Account' });
 });
+router.post('/seat-calculator/mail',calc.sendMail)
 app.use('/', router);
 //for putting public css
 app.use(express.static('public'));
